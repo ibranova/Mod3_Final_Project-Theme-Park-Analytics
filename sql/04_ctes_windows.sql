@@ -39,7 +39,7 @@ FROM (
   SELECT
     date_iso,
     daily_visits,
-	is_weekend,
+	  is_weekend,
 	day_name,
     RANK() OVER (ORDER BY daily_visits DESC) AS rnk -- The rank() window function here rank the day wiht the most visit showing gap after the tie which emphasise the position.
   FROM daily

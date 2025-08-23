@@ -48,7 +48,7 @@ WITH repeat_flag AS (
   )
 )
 
-/* “The is_repeat_guest column tells us if a guest has come back before. 
+/* “The is_repeat_guest feature tells us if a guest has come back before. 
 The General Manager and Marketing team use this information to segment guests and design loyalty/retention programs.”
 This can use that column to find out if repeat visitors are increasing year to year
 And The maketing team can identify the repeated guest and send them a thank you note with a coupon for their next ride
