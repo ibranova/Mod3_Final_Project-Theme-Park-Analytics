@@ -1,4 +1,6 @@
 # Supernova Theme Park Data Analysis 🎡
+![pexels-mateusz-dach-99805-728415](https://github.com/user-attachments/assets/db1db681-5888-46b2-8293-1779393cf229)
+
 ## Project Owner: 	[Ibrahima Diallo](https://www.linkedin.com/in/ibranova/) Data Analyst
 ### Business Problem
 The Supernova theme park has experienced uneven guest satisfaction scores and fluctuating revenue streams over the past two quarters. Operational data reveals recurring complaints about long wait times, inconsistent ride availability due to maintenance issues, and overcrowding during peak hours. Meanwhile, the Marketing team struggles to understand which ticket types and promotional campaigns attract the most valuable guests who spend significantly on food, merchandise, and premium experiences. Leadership needs an evidence-based, cross-departmental plan to align operational efficiency, guest experience, and targeted marketing strategies to maximize both satisfaction and revenue.
@@ -55,10 +57,66 @@ More features can be found in the file: [sql/04_Ctes&Windows.sql](https://github
 1. Daily Performance Analysis
 <img width="1015" height="934" alt="daily" src="https://github.com/user-attachments/assets/19d81bd2-1c42-4af3-b7fc-ac43594eec39" />
 
-   **Key Insights:** Weekdays (Monday-Tuesday) show higher attendance than weekends, with Monday July 7th recording peak traffic of 10+ visits. Revenue patterns follow attendance trends, indicating strong correlation between visitor volume and spending.
+**Key Insights:** Weekdays (Monday-Tuesday) show higher attendance than weekends, with Monday, July 7th recording peak traffic of 10+ visits. Revenue patterns follow attendance trends, indicating a strong correlation between visitor volume and spending.
+   
 3. Wait Time vs Satisfaction Analysis
-4. 
-5. Customer Lifetime Value & Ticket Performance
+  <img width="1448" height="860" alt="guestvswait" src="https://github.com/user-attachments/assets/7b105267-0be0-4174-a8bb-d6417b4535f8" />
+
+  **Key Insights:** Popular attractions like "Tiny Trucks" generate higher wait times but maintain strong satisfaction ratings. The analysis reveals an inverse relationship where moderate wait times (15-30 minutes) actually correlate with higher guest spending, suggesting perceived value from popular attractions.
+
+3. Customer Lifetime Value & Ticket Performance
+  <img width="1343" height="1107" alt="ticketPerformance" src="https://github.com/user-attachments/assets/4a02d668-b193-4b8a-8154-e7161a53cd80" />
+
+
+   **Key Insights:** VIP and Family-pack tickets drive the highest per-visit spending but represent lower visit volumes. Day-pass tickets show strong frequency but moderate spending. California and New York guests contribute the highest total CLV, indicating geographic targeting opportunities.
+
+## Insights & Recommendations
+### For General Manager:
+
+- Peak Day Staffing: Increase Monday staffing by 25% based on consistent high-traffic patterns
+- Revenue Opportunity: Weekend promotions underperforming, investigate Saturday/Sunday guest acquisition strategies
+- Guest Retention: Implement a loyalty program targeting repeat visitors who show 40% higher spending patterns
+
+### For Operations Director:
+
+- Queue Management: Deploy additional staff to "Tiny Trucks" and popular attractions during 12-4 PM peak hours
+- Maintenance Scheduling: Schedule ride maintenance during Tuesday-Wednesday low-traffic periods
+- Capacity Planning: Optimize party size accommodations - groups of 4-5 show highest satisfaction and spending
+
+### For Marketing Director:
+
+- Geographic Targeting: Prioritize CA and NY markets with 3x higher CLV than other states
+- Ticket Strategy: Promote VIP upgrades to Day-pass holders who show the highest conversion potential
+- Promotional Timing: Shift weekend discount strategy - current promotions attract price-sensitive guests with 30% lower in-park spending
+## Ethics & Bias Considerations
+
+### Data Limitations:
+
+- Time Window Bias: Analysis covers only 8 days in July, potentially missing seasonal patterns. 
+- Sample Size: 47 total visits may not represent the whole guest population
+
+### Data Quality Decisions:
+
+- Removed 8 duplicate ride events to prevent double-counting in satisfaction metrics
+- Normalized negative wait times to NULL rather than imputing values
+- Standardized currency formats and converted to amount in USD, but retained original precision
+
+## Repository Navigation
+├── sql/
+│   ├── 01_eda.sql              
+│   ├── 02_cleaning.sql         
+│   ├── 03_features.sql        
+│   └── 04_ctes_windows.sql     
+├── figures/
+│   ├── daily_performance_analysis.png
+│   ├── wait_satisfaction_analysis.png
+│   └── clv_ticket_analysis.png
+├── python/
+│   └── visualization_analysis.py
+├── themepark.db          
+└── README.md                
+
+  
 
 
 
