@@ -555,25 +555,78 @@ SELECT * FROM ranking
 where attraction_rank <=3);
 
 SELECT * FROM v_purchase_amount_dollars
-
-
-
-
-
-
-
-
+SELECT * FROM dim_date;
 COMMIT;
 
 
+---------------------------
+-- Python
+-- FIG1
+WITH daily AS (
+  SELECT
+    d.date_iso AS date,
+    COUNT(DISTINCT v.visit_id) AS daily_visits,
+    SUM(v.spend_cents_clean)/100.0 AS daily_spend_usd
+  FROM dim_date d
+  LEFT JOIN fact_visits v ON v.date_id = d.date_id
+  GROUP BY d.date_iso
+)
+SELECT * FROM daily ORDER BY date; 
+
+------- FIG2
+SELECT
+  COALESCE(a.category, 'Unknown') AS category,
+  a.attraction_name,
+  AVG(re.wait_minutes) AS avg_wait,
+  AVG(re.satisfaction_rating) AS avg_sat,
+  COUNT(*) AS n_events
+FROM fact_ride_events re
+LEFT JOIN dim_attraction a ON a.attraction_id = re.attraction_id
+GROUP BY a.category, a.attraction_name
+HAVING n_events >= 10
+ORDER BY avg_wait DESC;
 
 
+WITH per_guest AS (
+  SELECT
+    g.home_state,
+    g.guest_id,
+    COALESCE(SUM(v.spend_cents_clean), 0)/100.0 AS clv_usd
+  FROM dim_guest g
+  LEFT JOIN fact_visits v ON v.guest_id = g.guest_id
+  GROUP BY g.home_state, g.guest_id
+),
+by_state AS (
+  SELECT home_state, AVG(clv_usd) AS avg_clv_usd, COUNT(*) AS n_guests
+  FROM per_guest
+  GROUP BY home_state
+)
+SELECT * FROM by_state
+ORDER BY avg_clv_usd DESC
+LIMIT 10;
+
+UPDATE fact_purchases 
+set payment_method = replace(payment_method, 'Apple Pay', 'APPLE PAY')
+
+commit
+
+---------------------------------------------------------------------------------
+WITH daily AS ( 
+    SELECT 
+        d.date_iso,
+        d.day_name,
+        d.is_weekend,
+        COUNT(DISTINCT v.visit_id) AS daily_visits,
+        SUM(v.spend_cents_clean/100.0) AS daily_spend_USD
+    FROM dim_date d
+    LEFT JOIN fact_visits v ON v.date_id = d.date_id
+    WHERE v.spend_cents_clean IS NOT NULL
+    GROUP BY d.date_iso, d.day_name, d.is_weekend
+    ORDER BY d.date_iso
+)
+SELECT * FROM dim_date;
 
 
-
-
-
-
-
+COMMIT
 
 
