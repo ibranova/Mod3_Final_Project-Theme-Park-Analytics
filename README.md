@@ -102,19 +102,23 @@ More features can be found in the file: [sql/04_Ctes&Windows.sql](https://github
 - Standardized currency formats and converted to amount in USD, but retained original precision
 
 ## Repository Navigation
-├── sql/
-│   ├── 01_eda.sql              
-│   ├── 02_cleaning.sql         
-│   ├── 03_features.sql        
-│   └── 04_ctes_windows.sql     
+```
+├── Data/
+│     └──themepark.db   
 ├── figures/
 │   ├── daily_performance_analysis.png
 │   ├── wait_satisfaction_analysis.png
 │   └── clv_ticket_analysis.png
-├── python/
+├── Notebook/
 │   └── visualization_analysis.py
-├── themepark.db          
-└── README.md                
+├── sql/
+│   ├── 01_eda.sql              
+│   ├── 02_cleaning.sql         
+│   ├── 03_features.sql        
+│   └── 04_ctes_windows.sql
+└── README.md
+```
+   
 
   
 
